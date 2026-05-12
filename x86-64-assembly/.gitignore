@@ -1,0 +1,24 @@
+# --- Intermediate Object Files ---
+*.o
+*.obj
+
+# --- NASM Listing & Diagnostic Files ---
+*.lst
+*.lis
+
+# --- Linker Maps & Symbol Tables ---
+*.map
+*.sym
+
+# --- Debugging Artifacts ---
+*.ilk
+*.pdb
+*.iobj
+*.ipdb
+
+# --- Compiled Executable Binaries ---
+# Block standard extensions across Linux, Windows, and macOS
+*.out
+*.exe
+*.bin
+*.com
