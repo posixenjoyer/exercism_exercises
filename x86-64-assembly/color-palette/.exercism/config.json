@@ -1,0 +1,18 @@
+{
+  "authors": [
+    "oxe-i"
+  ],
+  "files": {
+    "solution": [
+      "color_palette.asm"
+    ],
+    "test": [
+      "color_palette_test.c"
+    ],
+    "exemplar": [
+      ".meta/exemplar.asm"
+    ]
+  },
+  "icon": "hexadecimal",
+  "blurb": "Learn about declaring, accessing and modifying initialized data by mixing colors."
+}
