@@ -1,0 +1,27 @@
+# | Register | Usage     | Type    | Description                                       |
+# | -------- | --------- | ------- | ------------------------------------------------- |
+# | `$a0`    | input     | integer | starting number                                   |
+# | `$v0`    | output    | integer | expected number of steps, -1 if number is invalid |
+# | `$t0-9`  | temporary | any     | used for temporary storage                        |
+
+.globl  steps
+
+steps:
+        blez $a0, __error       # Invalid input = return -1
+        xor $v0, $v0, $v0       # Clear step counter
+__check_even:
+        beq $a0, 1, __return    # Check if we start finished :)
+        add $v0, $v0, 1         # Increment step count
+        andi $t0, $a0, 1        # Check evenness of input
+        bne $t0, 0, __do_odd    # Handle odd cases
+        srl $a0, $a0, 1         # Handle even cases ( <reg> >> 1 = <reg> / 2 )
+        b __check_even          # Loop, loop-a-doop, loop-a-doop-a-doop-a-doop
+__do_odd:
+        mulu $a0, $a0, 3
+        add $a0, $a0, 1
+        b __check_even
+
+__error:
+        li $v0, -1
+__return:
+        jr $ra

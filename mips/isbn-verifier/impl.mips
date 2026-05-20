@@ -1,0 +1,33 @@
+# | Register | Usage     | Type    | Description                              |
+# | -------- | --------- | ------- | ---------------------------------------- |
+# | `$a0`    | input     | address | null-terminated input string             |
+# | `$v0`    | output    | boolean | valid isbn (`0` = `false`, `1` = `true`) |
+# | `$t0-9`  | temporary | any     | used for temporary storage               |
+
+.globl is_valid
+
+.eqv X 'X'
+.eqv x 'x'
+.eqv HYPHEN '-'
+.eqv ZERO '0'
+.eqv NINE '9'
+.eqv ASCII_INT_OFF 48
+
+is_valid:
+        add $t1, $t1, 1
+        move $t2, $t1
+__loop:
+        beq $t1, 10, __check_check_char
+        lb $t0, ($a0)
+        add $a0, $a0, 1
+        beq $t0, HYPEN,  __count_hyphen
+__count_hyphen:
+        add $t2, $t2, 1
+        bgt $t2, 3, __not_isbn
+        b __loop
+__check_check_char:
+        
+
+__not_isbn:
+        li $v0, 0
+        jr $ra

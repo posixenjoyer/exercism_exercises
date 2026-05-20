@@ -1,0 +1,10 @@
+[assembly]
+# Set the target instruction set to mips
+instruction_set = "mips"
+
+# Options: "gas" (GNU Assembler/gcc), "nasm", or "go"
+assembler = "gas" 
+
+[diagnostics]
+# Disable default x86-64 compile diagnostics if they throw errors
+enabled = false

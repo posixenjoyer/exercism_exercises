@@ -1,0 +1,22 @@
+.globl difference_of_squares
+
+difference_of_squares:
+
+        beq $a0, 0, .return
+        move $t0, $a0
+        move $t1, $a0
+        mul $t1, $t1, $t1
+        beq $a0, 1, .end
+.start:
+        addi $a0, $a0, -1
+        mult $a0, $a0
+        mflo $t2
+        addu $t1, $t1, $t2
+        addu $t0, $t0, $a0
+        bne $a0, 1, .start
+.end:
+        mult $t0, $t0
+        mflo $t0
+        sub $v0, $t0, $t1
+.return:
+        jr $ra

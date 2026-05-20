@@ -1,0 +1,20 @@
+{
+  "authors": [
+    "ukolka",
+    "keiravillekode"
+  ],
+  "files": {
+    "solution": [
+      "impl.mips"
+    ],
+    "test": [
+      "runner.mips"
+    ],
+    "example": [
+      ".meta/example.mips"
+    ]
+  },
+  "blurb": "Calculate the number of steps to reach 1 using the Collatz conjecture.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Collatz_conjecture"
+}

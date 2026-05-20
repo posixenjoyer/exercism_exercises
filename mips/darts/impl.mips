@@ -1,0 +1,35 @@
+# | Register | Usage     | Type    | Description                |
+# | -------- | --------- | ------- | -------------------------- |
+# | `$a0`    | input     | integer | x                          |
+# | `$a1`    | input     | integer | y                          |
+# | `$v0`    | output    | integer | points earned              |
+# | `$t0-9`  | temporary | any     | used for temporary storage |
+
+.eqv YOU_STINK   0
+.eqv OUTTER  1
+.eqv INNER  5
+.eqv BULLSEYE   10
+
+.text
+.globl score
+
+
+
+score:
+        li $v0, YOU_STINK               # You couldn't hit water if you fell out of a boat!
+        mulu $a0, $a0, $a0
+        mulu $a1, $a1, $a1
+        add $t0, $a0, $a1
+        ble $t0, 100, __check_outter
+        jr $ra
+__check_outter:
+        ble $t0, 25, __check_middle
+        li $v0, OUTTER                  # Professional Gold Star Earner
+        jr $ra
+__check_middle:
+        ble $t0, 1, __bullseye
+        li $v0, INNER                   # Practice has made you less marginal
+        jr $ra
+__bullseye:
+        li $v0, BULLSEYE                # You're a pro, have a cookie.
+        jr $ra

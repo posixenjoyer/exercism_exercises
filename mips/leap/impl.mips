@@ -1,0 +1,24 @@
+## Registers
+
+# | Register | Usage     | Type    | Description                                      |
+# | -------- | --------- | ------- | ------------------------------------------------ |
+# | `$a0`    | input     | integer | year to check                                    |
+# | `$v0`    | output    | boolean | input is leap year (`0` = `false`, `1` = `true`) |
+# | `$t0-9`  | temporary | any     | used for temporary storage                       |
+
+.globl is_leap_year
+
+is_leap_year:
+        beq $a0, 0, .return_false # Error on Zero Year
+        andi $t0, $a0, 3          # Bitwise 'and' can check for divisibility of powers of 2 by checking the lower n of 2^n bits.
+        bne $t0, 0, .return_false # Remainder != 0 means this can't be a leap year return false
+        rem $t0, $a0, 100         # I don't like using abstracted pnemonics. li/div(u)/mfhi is cleaner imo.
+        bne $t0, 0, .return_true  # If we're not in a century year, it's a leap year.  Return true
+        rem $t0, $a0, 400         # Last case to check
+        bne $t0, 0, .return_false # Return false if not, otherwise fall through to returning true.
+.return_true:
+        li $v0, 1
+        jr $ra
+.return_false:
+        xor $v0, $v0, $v0
+        jr $ra
