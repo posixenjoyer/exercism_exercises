@@ -4,14 +4,16 @@
 # | `$v0`    | output    | boolean | valid isbn (`0` = `false`, `1` = `true`) |
 # | `$t0-9`  | temporary | any     | used for temporary storage               |
 
-.globl is_valid
-
 .eqv X 'X'
 .eqv x 'x'
 .eqv HYPHEN '-'
 .eqv ZERO '0'
 .eqv NINE '9'
 .eqv ASCII_INT_OFF 48
+
+.text
+.globl is_valid
+
 
 is_valid:
         add $t1, $t1, 1

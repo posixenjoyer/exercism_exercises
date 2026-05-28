@@ -4,7 +4,7 @@
 # | `$v0`    | output    | integer | low 32 bits of output            |
 # | `$v1`    | output    | integer | high 32 bits of output           |
 # | `$t0-9`  | temporary | any     | for temporary storage            |
-
+.text
 .globl square
 
 square:
